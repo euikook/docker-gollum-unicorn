@@ -1,12 +1,11 @@
 TOP_DIR=$(PWD)
 
-gollum-unicorn:
+gollum:
 	docker run -it --rm --name gollum \
 		-v $(TOP_DIR):/apps \
-		-p 80:80 \
 		euikook/gollum-unicorn
 
-gollum-unicorn.build:
+gollum.build:
 	docker build -t euikook/gollum-unicorn .
 
 webroot:
