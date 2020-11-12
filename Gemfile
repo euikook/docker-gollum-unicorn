@@ -7,7 +7,7 @@ git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
 # gem "rails"
 
 gem "rack", "~> 2.2"
-gem "gollum", git: 'https://github.com/euikook/gollum'
+gem "gollum", git: 'https://github.com/euikook/gollum.git'
 gem "omnigollum", "~> 0.1.6"
 gem "omniauth-google-oauth2", "~> 0.8.0"
 gem "unicorn", "~> 5.7"
@@ -21,3 +21,5 @@ gem "wikicloth", "~> 0.8.3"
 gem "github-markdown", "~> 0.6.9"
 
 gem "RedCloth", "~> 4.3"
+
+gem "xml-sitemap", "~> 1.3"
