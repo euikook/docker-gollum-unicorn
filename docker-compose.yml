@@ -1,0 +1,21 @@
+services:
+  gollum:
+    image: euikook/gollum-unicorn
+    volumes:
+    - .:/apps
+    - ../wiki.notes:/wiki.notes
+    environment:
+    - GOOGLE_OAUTH2_CLIENT_ID=${GOOGLE_OAUTH2_CLIENT_ID}
+    - GOOGLE_OAUTH2_CLIENT_SECRET=${GOOGLE_OAUTH2_CLIENT_SECRET}
+    restart: always
+  nginx:
+    image: nginx
+    ports:
+    - "80:80"
+    - "443:443"
+    volumes:
+    - .:/apps
+    - ./conf/certbot:/etc/letsencrypt
+    - ./var/certbot:/var/lib/letsencrypt
+    - ./conf/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+    restart: always

@@ -37,12 +37,31 @@ git init wiki.notes
 echo "# Welcome to my wiki pages" > wiki.notes/Home.md
 ```
 
-## Run Gollum as daemon
+## Run with docker-compose 
+
+### with Google OAuth2
+
+```
+tee .env << END
+GOOGLE_OAUTH2_CLIENT_ID=YOUR_GOOGLE_OAUTH2_CLIENT_ID
+GOOGLE_OAUTH2_CLIENT_SECRET=YOUR_GOOGLE_OAUTH2_CLIENT_SECRET
+END
+
+```
+
+### Run Gollum Service
+```
+docker-compose up 
+```
+
+## Manually run
+
+### Run Gollum as daemon
 ```
 make gollum
 ```
 
-## Run Nginx as daemon
+### Run Nginx as daemon
 ```
 make nginx
 ```
