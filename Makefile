@@ -1,8 +1,13 @@
 TOP_DIR=$(PWD)
 
+DOMAINS ?= harues.com notes.harues.com
+
+CERTBOT_DOMAINS := $(addprefix "-d ", $(DOMAINS))
+
 gollum:
-	docker run -it --rm --name gollum \
+	docker run -d -it --rm --name gollum \
 		-v $(TOP_DIR):/apps \
+		-v $(TOP_DIR)/../wiki.notes:/wiki.notes \
 		euikook/gollum-unicorn
 
 gollum.build:
@@ -16,9 +21,11 @@ webroot:
 		nginx
 
 nginx: 
-	docker run --rm --name nginx \
+	docker run -d --rm --name nginx \
+		-v $(TOP_DIR):/apps \
 		-v "$(TOP_DIR)/conf/certbot:/etc/letsencrypt" \
 		-v "$(TOP_DIR)/var/certbot:/var/lib/letsencrypt" \
+		-v $(TOP_DIR)/conf/nginx/nginx.conf:/etc/nginx/conf.d/default.conf \
 		-p 80:80 \
 		-p 443:443 \
 		nginx
@@ -28,4 +35,4 @@ certbot:
 		-v "$(TOP_DIR)/var/www/certbot:/var/www/certbot" \
 		-v "$(TOP_DIR)/conf/certbot:/etc/letsencrypt" \
 		-v "$(TOP_DIR)/var/certbot:/var/lib/letsencrypt" \
-		certbot/certbot certonly --webroot -w /var/www/certbot -d acme.com
+		certbot/certbot certonly --webroot -w /var/www/certbot $(CERTBOT_DOMAINS)
