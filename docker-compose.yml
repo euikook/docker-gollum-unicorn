@@ -1,6 +1,7 @@
 services:
-  gollum:
+  gollum-unicorn:
     image: euikook/gollum-unicorn
+    build: .
     volumes:
     - .:/apps
     - ../wiki.notes:/wiki.notes
