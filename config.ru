@@ -30,6 +30,7 @@ wiki_options[:allow_editing] = use_oauth # # Equivalent to --no-edit
 wiki_options[:show_all] = true # Equivalent to --show-all
 #wiki_options[:collapse_tree] = true # Equivalent to --collapse-tree
 wiki_options[:h1_title] = true # Equivalent to --h1-title
+wiki_options[:sitemap] = true # Equivalent to --sitemap
 
 
 
